@@ -1,0 +1,168 @@
+// Prisma schema for efacture-independant.fr
+// SQLite datasource with all domain entities from spec §4
+
+datasource db {
+  provider = "sqlite"
+}
+
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "client"
+  output     = "../generated/prisma"
+}
+
+model Profession {
+  id          String                 @id @default(uuid())
+  slug        String                 @unique
+  name        String // e.g., "Artisan du BTP"
+  category    String // e.g., "Artisanat", "Freelance"
+  description String // Jargon-free intro text
+  icon        String // Lucide icon identifier
+  contentHtml String // Full Markdown-rendered SEO guide
+  createdAt   DateTime               @default(now())
+  updatedAt   DateTime               @updatedAt
+  solutions   SolutionToProfession[]
+}
+
+model Solution {
+  id            String                 @id @default(uuid())
+  name          String // e.g., "Indy", "Pennylane", "Freebe"
+  logoUrl       String
+  affiliateUrl  String
+  payoutDetails String // e.g., "Up to €200 or recurring percentage"
+  isGoodForVol  String // "LOW", "MEDIUM", "HIGH"
+  isGoodForType String // "EI", "SARL", "SASU", "MICRO"
+  description   String // Plain-English description
+  professions   SolutionToProfession[]
+  QuizResult    QuizResult[]
+}
+
+model SolutionToProfession {
+  professionId String
+  solutionId   String
+  profession   Profession @relation(fields: [professionId], references: [id])
+  solution     Solution   @relation(fields: [solutionId], references: [id])
+
+  @@id([professionId, solutionId])
+}
+
+model QuizQuestion {
+  id       String       @id @default(uuid())
+  step     Int          @unique
+  question String
+  helpText String?
+  options  QuizOption[]
+}
+
+model QuizOption {
+  id             String       @id @default(uuid())
+  questionId     String
+  question       QuizQuestion @relation(fields: [questionId], references: [id])
+  text           String
+  value          String // Code indicating category weight
+  nextStepAction String // "NEXT" or "SUBMIT"
+}
+
+model QuizResult {
+  id            String   @id @default(uuid())
+  userEmail     String
+  userProfile   String // Selected profile details
+  recommendedId String
+  recommended   Solution @relation(fields: [recommendedId], references: [id])
+  createdAt     DateTime @default(now())
+}
+
+model Consultation {
+  id              String   @id @default(uuid())
+  clientEmail     String
+  legalStatus     String // Auto-entrepreneur, EI, SARL, etc.
+  monthlyVolume   Int // Estimated invoices per month
+  currentTools    String // Word, Excel, Paper, etc.
+  specificNeeds   String // Textarea notes
+  invoiceUrl      String? // File path to the uploaded invoice example
+  paymentStatus   String // "PENDING", "PAID"
+  stripeSessionId String?  @unique
+  aiDraftText     String? // Automated initial recommendation draft
+  isAnswered      Boolean  @default(false)
+  createdAt       DateTime @default(now())
+}
+
+model LeadSubscriber {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  source    String // "HOMEPAGE_FOOTER", "GUIDE_DOWNLOAD"
+  createdAt DateTime @default(now())
+}
+
+// ===== Phase 2: Generator & Subscriptions =====
+
+model User {
+  id                    String    @id @default(uuid())
+  email                 String    @unique
+  // Auth
+  magicLinkToken        String?   @unique
+  magicLinkExpiresAt    DateTime?
+  sessionToken          String?   @unique
+  // Profile / Billing identity
+  companyName           String?
+  siret                 String?
+  vatNumber             String? // e.g. "FR12345678901"
+  address               String?
+  city                  String?
+  postalCode            String?
+  country               String    @default("France")
+  phone                 String?
+  iban                  String?
+  bic                   String?
+  logoUrl               String? // path to uploaded logo
+  accentColor           String    @default("#0f766e") // teal by default
+  // Subscription
+  stripeCustomerId      String?   @unique
+  stripeSubscriptionId  String?   @unique
+  hasActiveSubscription Boolean   @default(false)
+  // Relations
+  invoices              Invoice[]
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+}
+
+model Invoice {
+  id               String        @id @default(uuid())
+  userId           String
+  user             User          @relation(fields: [userId], references: [id])
+  invoiceNumber    String // e.g. "FV-2026-0001"
+  issueDate        DateTime      @default(now())
+  dueDate          DateTime?
+  // Client info
+  clientName       String
+  clientAddress    String?
+  clientCity       String?
+  clientPostalCode String?
+  clientCountry    String        @default("France")
+  clientSiret      String?
+  clientVatNumber  String?
+  // Totals (computed on save)
+  totalHT          Float         @default(0)
+  totalVAT         Float         @default(0)
+  totalTTC         Float         @default(0)
+  // Status
+  status           String        @default("DRAFT") // DRAFT, FINAL
+  notes            String?
+  // Items
+  items            InvoiceItem[]
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+}
+
+model InvoiceItem {
+  id          String  @id @default(uuid())
+  invoiceId   String
+  invoice     Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  description String
+  quantity    Float   @default(1)
+  unitPrice   Float   @default(0)
+  vatRate     Float   @default(20) // percentage, e.g. 20 for 20%
+  totalHT     Float   @default(0)
+  totalVAT    Float   @default(0)
+  totalTTC    Float   @default(0)
+}

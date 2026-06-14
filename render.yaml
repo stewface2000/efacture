@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: efacture-independant
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: DATABASE_URL
+        value: file:/data/dev.db
+      - key: ADMIN_PASSWORD
+        value: admin123
+      - key: STRIPE_SECRET_KEY
+        value: ""
+      - key: BREVO_API_KEY
+        value: ""
+      - key: GEMINI_API_KEY
+        value: ""
+    disk:
+      name: sqlite-data
+      mountPath: /data
+      sizeGB: 1
