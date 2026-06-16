@@ -20,8 +20,12 @@ RUN npx prisma generate
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV DATABASE_URL="file:/app/dev.db"
 
+# Initialize and seed temporary database for static pages compilation
+RUN npx prisma db push --accept-data-loss && node prisma/seed.js
+
 # Build Next.js app
 RUN npm run build
+
 
 # Stage 2: Production image
 FROM node:20-slim AS runner
