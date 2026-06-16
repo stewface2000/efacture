@@ -39,8 +39,9 @@ ENV HOSTNAME="0.0.0.0"
 # Install openssl for Prisma inside slim image
 RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 
-# Create database volume directory
-RUN mkdir -p /data
+# Create database volume directory with write access for non-root users
+RUN mkdir -p /data && chmod 777 /data
+
 
 # Copy built application and production dependencies
 COPY --from=builder /app/package.json /app/package-lock.json ./

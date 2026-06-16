@@ -9,6 +9,7 @@ export default function LoginPage() {
   const [success, setSuccess] = useState(false);
   const [devLink, setDevLink] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [errorDetails, setErrorDetails] = useState<string | null>(null);
   const { t } = useLanguage();
 
   // Check URL for error and redirect params
@@ -23,6 +24,7 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setErrorDetails(null);
     setDevLink(null);
 
     try {
@@ -36,6 +38,9 @@ export default function LoginPage() {
 
       if (!res.ok) {
         setError(data.error || t("login.serverError"));
+        if (data.details) {
+          setErrorDetails(data.details);
+        }
         return;
       }
 
@@ -44,12 +49,14 @@ export default function LoginPage() {
       if (data.devLink) {
         setDevLink(data.devLink);
       }
-    } catch {
+    } catch (err) {
       setError(t("login.serverError"));
+      setErrorDetails(err instanceof Error ? err.message : String(err));
     } finally {
       setLoading(false);
     }
   }
+
 
   return (
     <div
@@ -172,9 +179,26 @@ export default function LoginPage() {
                   lineHeight: 1.5,
                 }}
               >
-                {error}
+                <div>{error}</div>
+                {errorDetails && (
+                  <pre
+                    style={{
+                      marginTop: "0.5rem",
+                      padding: "0.5rem",
+                      background: "rgba(0,0,0,0.05)",
+                      borderRadius: "4px",
+                      fontSize: "0.7rem",
+                      whiteSpace: "pre-wrap",
+                      wordBreak: "break-all",
+                      fontFamily: "monospace",
+                    }}
+                  >
+                    {errorDetails}
+                  </pre>
+                )}
               </div>
             )}
+
 
             <button
               type="submit"
