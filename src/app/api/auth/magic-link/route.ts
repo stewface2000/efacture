@@ -33,12 +33,20 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    // Build the magic link URL
-    const origin = request.nextUrl.origin;
+    // Build the magic link URL using proxy headers if available
+    const forwardedHost = request.headers.get("x-forwarded-host");
+    const forwardedProto = request.headers.get("x-forwarded-proto") || "https";
+    
+    let origin = request.nextUrl.origin;
+    if (forwardedHost) {
+      origin = `${forwardedProto}://${forwardedHost}`;
+    }
+
     let magicLink = `${origin}/api/auth/verify?token=${token}`;
     if (redirectUrl && typeof redirectUrl === "string" && redirectUrl.startsWith("/") && !redirectUrl.startsWith("//")) {
       magicLink += `&redirect=${encodeURIComponent(redirectUrl)}`;
     }
+
 
     const brevoApiKey = process.env.BREVO_API_KEY;
 
