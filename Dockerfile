@@ -44,11 +44,13 @@ RUN mkdir -p /data
 
 # Copy built application and production dependencies
 COPY --from=builder /app/package.json /app/package-lock.json ./
+COPY --from=builder /app/prisma.config.ts /app/tsconfig.json ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/generated ./generated
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
+
 
 EXPOSE 3000
 
