@@ -149,6 +149,9 @@ export default function HomePage() {
                 {t("homepage.heroDesc")}
               </p>
               <div className="hero-buttons" style={{ marginBottom: "1.5rem", display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                <Link href="/generateur" className="btn btn-accent btn-lg" id="hero-cta-generator">
+                  {t("homepage.heroCtaGeneratorBtn")}
+                </Link>
                 <Link href="/validateur" className="btn btn-cta btn-lg" id="hero-cta-validator">
                   {t("homepage.heroCtaValidatorBtn")}
                 </Link>
@@ -156,6 +159,7 @@ export default function HomePage() {
                   {t("homepage.heroCtaGuides")}
                 </Link>
               </div>
+
 
               <div className="hero-trust">
                 <div className="hero-trust-stars" aria-label="5 étoiles sur 5">
