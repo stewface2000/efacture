@@ -124,6 +124,7 @@ model User {
   hasActiveSubscription Boolean   @default(false)
   // Relations
   invoices              Invoice[]
+  quotes                Quote[]
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
 }
@@ -160,6 +161,51 @@ model InvoiceItem {
   id          String  @id @default(uuid())
   invoiceId   String
   invoice     Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  description String
+  quantity    Float   @default(1)
+  unitPrice   Float   @default(0)
+  vatRate     Float   @default(20) // percentage, e.g. 20 for 20%
+  totalHT     Float   @default(0)
+  totalVAT    Float   @default(0)
+  totalTTC    Float   @default(0)
+}
+
+// ===== Phase 3: Quotes (Devis) =====
+
+model Quote {
+  id                String      @id @default(uuid())
+  userId            String
+  user              User        @relation(fields: [userId], references: [id])
+  quoteNumber       String      // e.g. "DV-2026-0001"
+  issueDate         DateTime    @default(now())
+  validUntil        DateTime?   // Validity date (default 30 days)
+  // Client info
+  clientName        String
+  clientAddress     String?
+  clientCity        String?
+  clientPostalCode  String?
+  clientCountry     String      @default("France")
+  clientSiret       String?
+  clientVatNumber   String?
+  // Totals (computed on save)
+  totalHT           Float       @default(0)
+  totalVAT          Float       @default(0)
+  totalTTC          Float       @default(0)
+  // Status
+  status            String      @default("DRAFT") // DRAFT, FINAL, CONVERTED
+  notes             String?
+  // Conversion tracking
+  convertedInvoiceId String?    // ID of the invoice created from this quote
+  // Items
+  items             QuoteItem[]
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+}
+
+model QuoteItem {
+  id          String  @id @default(uuid())
+  quoteId     String
+  quote       Quote   @relation(fields: [quoteId], references: [id], onDelete: Cascade)
   description String
   quantity    Float   @default(1)
   unitPrice   Float   @default(0)

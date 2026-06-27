@@ -249,6 +249,41 @@ exports.Prisma.InvoiceItemScalarFieldEnum = {
   totalTTC: 'totalTTC'
 };
 
+exports.Prisma.QuoteScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  quoteNumber: 'quoteNumber',
+  issueDate: 'issueDate',
+  validUntil: 'validUntil',
+  clientName: 'clientName',
+  clientAddress: 'clientAddress',
+  clientCity: 'clientCity',
+  clientPostalCode: 'clientPostalCode',
+  clientCountry: 'clientCountry',
+  clientSiret: 'clientSiret',
+  clientVatNumber: 'clientVatNumber',
+  totalHT: 'totalHT',
+  totalVAT: 'totalVAT',
+  totalTTC: 'totalTTC',
+  status: 'status',
+  notes: 'notes',
+  convertedInvoiceId: 'convertedInvoiceId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.QuoteItemScalarFieldEnum = {
+  id: 'id',
+  quoteId: 'quoteId',
+  description: 'description',
+  quantity: 'quantity',
+  unitPrice: 'unitPrice',
+  vatRate: 'vatRate',
+  totalHT: 'totalHT',
+  totalVAT: 'totalVAT',
+  totalTTC: 'totalTTC'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -271,7 +306,9 @@ exports.Prisma.ModelName = {
   LeadSubscriber: 'LeadSubscriber',
   User: 'User',
   Invoice: 'Invoice',
-  InvoiceItem: 'InvoiceItem'
+  InvoiceItem: 'InvoiceItem',
+  Quote: 'Quote',
+  QuoteItem: 'QuoteItem'
 };
 
 /**

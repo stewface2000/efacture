@@ -21,6 +21,12 @@ export default async function GenerateurPage({
     orderBy: { createdAt: "desc" },
   });
 
+  const quotes = await prisma.quote.findMany({
+    where: { userId: user.id },
+    include: { items: true },
+    orderBy: { createdAt: "desc" },
+  });
+
   const params = await searchParams;
   const justSubscribed = params.subscribed === "true";
 
@@ -39,6 +45,16 @@ export default async function GenerateurPage({
         issueDate: inv.issueDate.toISOString(),
         clientName: inv.clientName,
         totalTTC: inv.totalTTC,
+      }))}
+      quotes={quotes.map((q) => ({
+        id: q.id,
+        quoteNumber: q.quoteNumber,
+        issueDate: q.issueDate.toISOString(),
+        validUntil: q.validUntil?.toISOString() || null,
+        clientName: q.clientName,
+        totalTTC: q.totalTTC,
+        status: q.status,
+        convertedInvoiceId: q.convertedInvoiceId,
       }))}
       justSubscribed={justSubscribed}
     />

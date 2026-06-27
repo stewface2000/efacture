@@ -13,6 +13,17 @@ interface InvoiceSummary {
   totalTTC: number;
 }
 
+interface QuoteSummary {
+  id: string;
+  quoteNumber: string;
+  issueDate: string;
+  validUntil: string | null;
+  clientName: string;
+  totalTTC: number;
+  status: string;
+  convertedInvoiceId?: string | null;
+}
+
 interface DashboardProps {
   user: {
     id: string;
@@ -22,6 +33,7 @@ interface DashboardProps {
   };
   invoiceCount: number;
   invoices: InvoiceSummary[];
+  quotes: QuoteSummary[];
   justSubscribed: boolean;
 }
 
@@ -29,12 +41,15 @@ export default function GenerateurDashboard({
   user,
   invoiceCount,
   invoices,
+  quotes = [],
   justSubscribed,
 }: DashboardProps) {
   const router = useRouter();
   const { t, locale } = useLanguage();
   const [loggingOut, setLoggingOut] = useState(false);
   const [downloadingId, setDownloadingId] = useState<string | null>(null);
+  const [downloadingQuoteId, setDownloadingQuoteId] = useState<string | null>(null);
+  const [convertingQuoteId, setConvertingQuoteId] = useState<string | null>(null);
 
   const freeQuota = 3;
   const quotaUsed = Math.min(invoiceCount, freeQuota);
@@ -68,6 +83,60 @@ export default function GenerateurDashboard({
       alert(t("generateur.dashboard.downloadError"));
     } finally {
       setDownloadingId(null);
+    }
+  };
+
+  const handleDownloadQuotePDF = async (quoteId: string, quoteNumber: string) => {
+    setDownloadingQuoteId(quoteId);
+    try {
+      const res = await fetch(`/api/quotes/${quoteId}/pdf`);
+      if (!res.ok) throw new Error("Erreur");
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${quoteNumber}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch {
+      alert(t("generateur.dashboard.downloadQuoteError") || "Impossible de télécharger le devis.");
+    } finally {
+      setDownloadingQuoteId(null);
+    }
+  };
+
+  const handleConvertQuote = async (quoteId: string) => {
+    setConvertingQuoteId(quoteId);
+    try {
+      const res = await fetch(`/api/quotes/${quoteId}/convert`, { method: "POST" });
+      if (res.status === 403) {
+        alert(t("generateur.nouvelle.quotaReachedTitle") + "\n" + t("generateur.nouvelle.quotaReachedDesc"));
+        return;
+      }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Erreur lors de la conversion");
+      }
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      const disposition = res.headers.get("Content-Disposition");
+      const match = disposition?.match(/filename="(.+)"/);
+      a.download = match ? match[1] : "facture.pdf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      alert(t("generateur.dashboard.convertSuccess") || "Devis converti en facture avec succès !");
+      router.refresh();
+    } catch (err: any) {
+      alert((t("generateur.dashboard.convertError") || "Erreur de conversion") + (err.message ? ` : ${err.message}` : ""));
+    } finally {
+      setConvertingQuoteId(null);
     }
   };
 
@@ -361,11 +430,25 @@ export default function GenerateurDashboard({
                 style={{
                   width: "100%",
                   justifyContent: "center",
-                  fontSize: "1rem",
-                  padding: "1rem 2rem",
+                  fontSize: "0.9375rem",
+                  padding: "0.75rem 1.5rem",
                 }}
               >
                 {t("generateur.dashboard.actionNew")}
+              </Link>
+              <Link
+                href="/generateur/nouveau-devis"
+                className="btn btn-accent"
+                style={{
+                  width: "100%",
+                  justifyContent: "center",
+                  fontSize: "0.9375rem",
+                  padding: "0.75rem 1.5rem",
+                  background: "var(--teal-dark)",
+                  color: "white"
+                }}
+              >
+                {t("generateur.dashboard.actionNewQuote") || "📋 Nouveau devis"}
               </Link>
               <Link
                 href="/generateur/profil"
@@ -503,6 +586,166 @@ export default function GenerateurDashboard({
                     >
                       {downloadingId === inv.id ? "⏳" : "📥"} {t("generateur.dashboard.downloadBtn")}
                     </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Quotes list */}
+          <div style={{ marginTop: "3rem" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "1.25rem",
+              }}
+            >
+              <h2 style={{ margin: 0, fontSize: "1.375rem" }}>
+                {t("generateur.dashboard.myQuotes") || "Mes devis"}
+              </h2>
+              <span className="badge badge-muted">
+                {(t("generateur.dashboard.quotesCountBadge") || "{count} devis")
+                  .replace("{count}", String(quotes.length))}
+              </span>
+            </div>
+
+            {quotes.length === 0 ? (
+              <div
+                className="card"
+                style={{
+                  textAlign: "center",
+                  padding: "3rem 2rem",
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: "2.5rem",
+                    margin: "0 0 1rem",
+                  }}
+                >
+                  📋
+                </p>
+                <p
+                  style={{
+                    fontWeight: 600,
+                    color: "var(--text-secondary)",
+                    margin: "0 0 0.5rem",
+                  }}
+                >
+                  {t("generateur.dashboard.emptyQuotesTitle") || "Aucun devis créé"}
+                </p>
+                <p
+                  style={{
+                    color: "var(--text-muted)",
+                    fontSize: "0.875rem",
+                    margin: "0 0 1.5rem",
+                    maxWidth: "40ch",
+                    marginInline: "auto",
+                  }}
+                >
+                  {t("generateur.dashboard.emptyQuotesDesc") || "Créez votre premier devis professionnel en quelques clics."}
+                </p>
+                <Link
+                  href="/generateur/nouveau-devis"
+                  className="btn btn-accent btn-sm"
+                >
+                  {t("generateur.dashboard.emptyQuotesCta") || "Créer mon premier devis →"}
+                </Link>
+              </div>
+            ) : (
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                {quotes.map((q) => (
+                  <div
+                    key={q.id}
+                    className="card"
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr 1fr auto",
+                      alignItems: "center",
+                      gap: "1rem",
+                      padding: "1.25rem 1.5rem",
+                    }}
+                  >
+                    <div>
+                      <div
+                        style={{
+                          fontWeight: 700,
+                          color: "var(--text-deep)",
+                          margin: 0,
+                          fontSize: "0.9375rem",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "0.5rem",
+                        }}
+                      >
+                        <span>{q.quoteNumber}</span>
+                        {q.status === "CONVERTED" && (
+                          <span
+                            className="badge badge-teal"
+                            style={{
+                              fontSize: "0.6875rem",
+                              padding: "0.125rem 0.375rem",
+                              borderRadius: "var(--radius-sm)",
+                            }}
+                          >
+                            {t("generateur.dashboard.quoteStatusConverted") || "Converti"}
+                          </span>
+                        )}
+                      </div>
+                      <p
+                        style={{
+                          color: "var(--text-muted)",
+                          fontSize: "0.8125rem",
+                          margin: "0.125rem 0 0",
+                        }}
+                      >
+                        {formatDate(q.issueDate)}
+                      </p>
+                    </div>
+                    <p
+                      style={{
+                        color: "var(--text-secondary)",
+                        margin: 0,
+                        fontSize: "0.9375rem",
+                      }}
+                    >
+                      {q.clientName}
+                    </p>
+                    <p
+                      style={{
+                        fontWeight: 700,
+                        color: "var(--teal-dark)",
+                        margin: 0,
+                        fontSize: "1rem",
+                        fontVariantNumeric: "tabular-nums",
+                      }}
+                    >
+                      {q.totalTTC.toFixed(2)} €
+                    </p>
+                    <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+                      <button
+                        onClick={() => handleDownloadQuotePDF(q.id, q.quoteNumber)}
+                        disabled={downloadingQuoteId === q.id}
+                        className="btn btn-sm btn-secondary"
+                        style={{ whiteSpace: "nowrap" }}
+                      >
+                        {downloadingQuoteId === q.id ? "⏳" : "📥"} {t("generateur.dashboard.downloadBtn")}
+                      </button>
+                      {q.status !== "CONVERTED" && (
+                        <button
+                          onClick={() => handleConvertQuote(q.id)}
+                          disabled={convertingQuoteId === q.id}
+                          className="btn btn-sm btn-accent"
+                          style={{ whiteSpace: "nowrap" }}
+                        >
+                          {convertingQuoteId === q.id
+                            ? "⏳ " + (t("generateur.dashboard.convertingToInvoice") || "Conversion...")
+                            : (t("generateur.dashboard.convertToInvoice") || "Convertir en facture")}
+                        </button>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
