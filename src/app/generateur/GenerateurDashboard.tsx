@@ -200,10 +200,11 @@ export default function GenerateurDashboard({
                 fontWeight: 700,
               }}
             >
-              eF
+              eI
             </span>
-            efacture
+            eindependant
           </Link>
+
 
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
             <Link href="/generateur/profil" className="btn btn-secondary btn-sm">

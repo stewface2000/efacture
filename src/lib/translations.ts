@@ -172,7 +172,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       faqA5: "Il s'agit d'une fonctionnalité avancée disponible dans la version Illimitée. Importez simplement un devis PDF ou une ancienne facture, et notre intelligence artificielle en extrait automatiquement les informations (coordonnées clients, désignations, prix, taux de TVA, etc.) pour pré-remplir le générateur. Vous n'avez plus qu'à valider et à exporter au format Factur-X en un clic."
     },
     login: {
-      title: "Connexion à efacture",
+      title: "Connexion à eindependant",
       description: "Recevez un lien de connexion sécurisé par email. Aucun mot de passe requis.",
       emailLabel: "Adresse email",
       emailPlaceholder: "vous@exemple.fr",
@@ -558,7 +558,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       faqA5: "This is an advanced feature available in the Unlimited version. Simply import a PDF quote or an old invoice, and our AI automatically extracts information (client details, descriptions, prices, VAT rates, etc.) to pre-fill the generator. You only need to validate and export in Factur-X format in one click."
     },
     login: {
-      title: "Connect to efacture",
+      title: "Connect to eindependant",
       description: "Receive a secure connection link by email. No password required.",
       emailLabel: "Email address",
       emailPlaceholder: "you@example.com",
@@ -944,7 +944,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       faqA5: "To zaawansowana funkcja dostępna w wersji Nielimitowanej. Po prostu zaimportuj ofertę PDF lub starą fakturę, a nasza sztuczna inteligencja automatycznie wyodrębni informacje (dane klienta, opisy, ceny, stawki VAT itp.), aby wstępnie wypełnić generator. Pozostaje tylko zatwierdzić i wyeksportować do formatu Factur-X jednym kliknięciem."
     },
     login: {
-      title: "Logowanie do efacture",
+      title: "Logowanie do eindependant",
       description: "Otrzymaj bezpieczny link logowania na e-mail. Hasło nie jest wymagane.",
       emailLabel: "Adres e-mail",
       emailPlaceholder: "ty@przyklad.pl",
@@ -1330,7 +1330,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       faqA5: "Trata-se de uma funcionalidade avançada disponível na versão Ilimitada. Basta importar um orçamento em PDF ou uma fatura antiga, e a nossa inteligência artificial extrai automaticamente as informações (dados do cliente, descrições, preços, taxas de IVA, etc.) para pré-preencher o gerador. Depois, só tem de validar e exportar no formato Factur-X com um clique."
     },
     login: {
-      title: "Ligação ao efacture",
+      title: "Ligação ao eindependant",
       description: "Receba um link de acesso seguro por e-mail. Sem necessidade de palavra-passe.",
       emailLabel: "Endereço de e-mail",
       emailPlaceholder: "voce@exemplo.com",
@@ -1716,7 +1716,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       faqA5: "هذه ميزة متقدمة متوفرة في النسخة غير المحدودة. ما عليك سوى استيراد عرض أسعار بصيغة PDF أو فاتورة قديمة، وسيقوم الذكاء الاصطناعي الخاص بنا تلقائياً باستخراج المعلومات (بيانات العميل، الأوصاف، الأسعار، معدلات ضريبة القيمة المضافة، إلخ) لملء المولد مسبقاً. كل ما عليك فعله هو المراجعة والتصدير بصيغة Factur-X بنقرة واحدة."
     },
     login: {
-      title: "تسجيل الدخول إلى efacture",
+      title: "تسجيل الدخول إلى eindependant",
       description: "احصل على رابط تسجيل دخول آمن عبر البريد الإلكتروني. لا يتطلب كلمة مرور.",
       emailLabel: "البريد الإلكتروني",
       emailPlaceholder: "you@example.com",

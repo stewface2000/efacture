@@ -67,7 +67,8 @@ export async function POST(request: NextRequest) {
           subject: "Votre lien de connexion — e-independant.fr",
           htmlContent: `
             <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto; padding: 2rem;">
-              <h2 style="color: #1a1a1a; margin-bottom: 1rem;">Connexion à efacture</h2>
+              <h2 style="color: #1a1a1a; margin-bottom: 1rem;">Connexion à eindependant</h2>
+
               <p style="color: #3d3d3d; line-height: 1.6;">
                 Cliquez sur le bouton ci-dessous pour vous connecter. Ce lien est valable 15 minutes.
               </p>

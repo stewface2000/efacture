@@ -79,8 +79,9 @@ export default function Navbar() {
             />
           </svg>
           <span className="navbar-logo-text">
-            efacture<span style={{ color: "var(--teal)" }}>.</span>
+            eindependant<span style={{ color: "var(--teal)" }}>.</span>
           </span>
+
         </Link>
 
         <ul className={`navbar-links${mobileOpen ? " open" : ""}`}>
