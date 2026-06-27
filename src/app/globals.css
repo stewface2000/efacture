@@ -1838,5 +1838,116 @@ main {
   display: none;
 }
 
+/* ===================================================================
+   Responsive Invoice & Quote Items Grid
+   =================================================================== */
+
+.invoice-items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.invoice-items-header {
+  display: grid;
+  grid-template-columns: 2fr 80px 110px 110px 110px 40px;
+  gap: 0.75rem;
+  padding: 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.invoice-item-row {
+  display: grid;
+  grid-template-columns: 2fr 80px 110px 110px 110px 40px;
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.invoice-item-row-even {
+  background: var(--bg-cream);
+}
+
+.item-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.mobile-field-label {
+  display: none;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.invoice-item-desc {
+  width: 100%;
+  min-height: 42px;
+  max-height: 150px;
+  resize: vertical;
+  line-height: 1.4;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 991px) {
+  .invoice-items-header {
+    display: none !important;
+  }
+
+  .invoice-item-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.75rem !important;
+    padding: 1.25rem !important;
+    background: var(--bg-cream) !important;
+    border: 1px solid var(--border-medium) !important;
+    border-radius: var(--radius-lg) !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .item-field-wrapper:nth-child(1) {
+    grid-column: span 2;
+  }
+
+  .item-field-wrapper:nth-child(2) {
+    grid-column: span 1;
+  }
+
+  .item-field-wrapper:nth-child(3) {
+    grid-column: span 1;
+  }
+
+  .item-field-wrapper:nth-child(4) {
+    grid-column: span 1;
+  }
+
+  .item-field-wrapper:nth-child(5) {
+    grid-column: span 1;
+  }
+
+  .item-field-wrapper:nth-child(6) {
+    grid-column: span 2;
+    justify-self: end;
+    margin-top: 0.25rem;
+  }
+
+  .mobile-field-label {
+    display: block;
+  }
+}
+
+
 
 

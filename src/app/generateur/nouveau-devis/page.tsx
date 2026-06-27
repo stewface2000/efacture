@@ -632,19 +632,7 @@ export default function NouveauDevisPage() {
                 }}
               >
                 {/* Table header (desktop) */}
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 80px 100px 100px 100px 40px",
-                    gap: "0.5rem",
-                    padding: "0 0.25rem",
-                    fontSize: "0.75rem",
-                    fontWeight: 700,
-                    color: "var(--text-muted)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                  }}
-                >
+                <div className="invoice-items-header">
                   <span>{t("generateur.devis.thDescription")}</span>
                   <span>{t("generateur.devis.thQty")}</span>
                   <span>{t("generateur.devis.thUnitPrice")}</span>
@@ -656,106 +644,184 @@ export default function NouveauDevisPage() {
                 {items.map((item, index) => (
                   <div
                     key={item.id}
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 80px 100px 100px 100px 40px",
-                      gap: "0.5rem",
-                      alignItems: "center",
-                      padding: "0.75rem",
-                      background: index % 2 === 0 ? "var(--bg-cream)" : "transparent",
-                      borderRadius: "var(--radius-md)",
-                    }}
+                    className={`invoice-item-row ${
+                      index % 2 === 0 ? "invoice-item-row-even" : ""
+                    }`}
                   >
-                    <input
-                      type="text"
-                      value={item.description}
-                      onChange={(e) => updateItem(item.id, "description", e.target.value)}
-                      placeholder={t("generateur.devis.placeholderDescription")}
-                      className="input-premium"
-                      style={{ padding: "0.625rem 0.75rem", fontSize: "0.875rem" }}
-                      disabled={submitting}
-                    />
-                    <input
-                      type="number"
-                      value={item.quantity}
-                      onChange={(e) => updateItem(item.id, "quantity", Math.max(0, parseFloat(e.target.value) || 0))}
-                      min="0"
-                      step="0.01"
-                      className="input-premium"
-                      style={{
-                        padding: "0.625rem 0.5rem",
-                        fontSize: "0.875rem",
-                        textAlign: "center",
-                      }}
-                      disabled={submitting}
-                    />
-                    <input
-                      type="number"
-                      value={item.unitPrice}
-                      onChange={(e) => updateItem(item.id, "unitPrice", Math.max(0, parseFloat(e.target.value) || 0))}
-                      min="0"
-                      step="0.01"
-                      className="input-premium"
-                      style={{
-                        padding: "0.625rem 0.5rem",
-                        fontSize: "0.875rem",
-                        textAlign: "right",
-                      }}
-                      disabled={submitting}
-                    />
-                    <select
-                      value={item.vatRate}
-                      onChange={(e) => updateItem(item.id, "vatRate", parseFloat(e.target.value))}
-                      className="input-premium"
-                      style={{
-                        padding: "0.625rem 0.5rem",
-                        fontSize: "0.875rem",
-                      }}
-                      disabled={submitting}
-                    >
-                      {VAT_RATES.map((rate) => (
-                        <option key={rate.value} value={rate.value}>
-                          {rate.label}
-                        </option>
-                      ))}
-                    </select>
-                    <div
-                      style={{
-                        fontWeight: 700,
-                        fontSize: "0.9375rem",
-                        color: "var(--text-deep)",
-                        textAlign: "right",
-                        fontVariantNumeric: "tabular-nums",
-                        padding: "0 0.25rem",
-                      }}
-                    >
-                      {formatEuro(computeLineTotalHT(item))} €
+                    {/* Description */}
+                    <div className="item-field-wrapper">
+                      <span className="mobile-field-label">
+                        {t("generateur.devis.thDescription")}
+                      </span>
+                      <textarea
+                        value={item.description}
+                        onChange={(e) =>
+                          updateItem(item.id, "description", e.target.value)
+                        }
+                        placeholder={t("generateur.devis.placeholderDescription")}
+                        className="input-premium invoice-item-desc"
+                        disabled={submitting}
+                        rows={2}
+                      />
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => removeItem(item.id)}
-                      disabled={items.length <= 1 || submitting}
+
+                    {/* Quantity */}
+                    <div className="item-field-wrapper">
+                      <span className="mobile-field-label">
+                        {t("generateur.devis.thQty")}
+                      </span>
+                      <input
+                        type="number"
+                        value={item.quantity}
+                        onChange={(e) =>
+                          updateItem(
+                            item.id,
+                            "quantity",
+                            Math.max(0, parseFloat(e.target.value) || 0)
+                          )
+                        }
+                        min="0"
+                        step="0.01"
+                        placeholder="1"
+                        className="input-premium"
+                        style={{
+                          padding: "0.625rem 0.5rem",
+                          fontSize: "0.875rem",
+                          textAlign: "center",
+                        }}
+                        disabled={submitting}
+                      />
+                    </div>
+
+                    {/* Unit Price */}
+                    <div className="item-field-wrapper">
+                      <span className="mobile-field-label">
+                        {t("generateur.devis.thUnitPrice")}
+                      </span>
+                      <input
+                        type="number"
+                        value={item.unitPrice}
+                        onChange={(e) =>
+                          updateItem(
+                            item.id,
+                            "unitPrice",
+                            Math.max(0, parseFloat(e.target.value) || 0)
+                          )
+                        }
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                        className="input-premium"
+                        style={{
+                          padding: "0.625rem 0.5rem",
+                          fontSize: "0.875rem",
+                          textAlign: "right",
+                        }}
+                        disabled={submitting}
+                      />
+                    </div>
+
+                    {/* VAT Rate */}
+                    <div className="item-field-wrapper">
+                      <span className="mobile-field-label">
+                        {t("generateur.devis.thVat")}
+                      </span>
+                      <select
+                        value={item.vatRate}
+                        onChange={(e) =>
+                          updateItem(
+                            item.id,
+                            "vatRate",
+                            parseFloat(e.target.value)
+                          )
+                        }
+                        className="input-premium"
+                        style={{
+                          padding: "0.625rem 0.5rem",
+                          fontSize: "0.875rem",
+                          width: "100%",
+                        }}
+                        disabled={submitting}
+                      >
+                        {VAT_RATES.map((rate) => (
+                          <option key={rate.value} value={rate.value}>
+                            {rate.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Total HT */}
+                    <div className="item-field-wrapper">
+                      <span className="mobile-field-label">
+                        {t("generateur.devis.thTotalHT")}
+                      </span>
+                      <div
+                        style={{
+                          fontWeight: 700,
+                          fontSize: "0.9375rem",
+                          color: "var(--text-deep)",
+                          textAlign: "right",
+                          fontVariantNumeric: "tabular-nums",
+                          padding: "0 0.25rem",
+                          minHeight: "42px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "flex-end",
+                        }}
+                      >
+                        {formatEuro(computeLineTotalHT(item))} €
+                      </div>
+                    </div>
+
+                    {/* Delete button */}
+                    <div
+                      className="item-field-wrapper"
                       style={{
-                        width: "2rem",
-                        height: "2rem",
-                        display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        border: "none",
-                        background: items.length <= 1 ? "transparent" : "rgba(234, 88, 12, 0.1)",
-                        color: items.length <= 1 ? "var(--text-light)" : "var(--rust)",
-                        borderRadius: "var(--radius-sm)",
-                        cursor: items.length <= 1 ? "not-allowed" : "pointer",
-                        fontSize: "1rem",
-                        fontWeight: 700,
-                        transition: "all 200ms ease",
                       }}
-                      title={t("generateur.devis.deleteLineTooltip")}
                     >
-                      ×
-                    </button>
+                      <span
+                        className="mobile-field-label"
+                        style={{ visibility: "hidden", marginBottom: "0.25rem" }}
+                      >
+                        Supprimer
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => removeItem(item.id)}
+                        disabled={items.length <= 1 || submitting}
+                        style={{
+                          width: "2rem",
+                          height: "2rem",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          border: "none",
+                          background:
+                            items.length <= 1
+                              ? "transparent"
+                              : "rgba(234, 88, 12, 0.1)",
+                          color:
+                            items.length <= 1
+                              ? "var(--text-light)"
+                              : "var(--rust)",
+                          borderRadius: "var(--radius-sm)",
+                          cursor:
+                            items.length <= 1 ? "not-allowed" : "pointer",
+                          fontSize: "1rem",
+                          fontWeight: 700,
+                          transition: "all 200ms ease",
+                        }}
+                        title={t("generateur.devis.deleteLineTooltip")}
+                      >
+                        ×
+                      </button>
+                    </div>
                   </div>
                 ))}
+
 
                 <button
                   type="button"
