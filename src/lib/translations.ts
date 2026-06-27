@@ -14,7 +14,9 @@ export const translations: Record<Locale, Record<string, any>> = {
       phoneMobile: "01 84 60 40 20 (9h-18h)",
       phoneTitle: "Appel gratuit, Lun-Ven 9h-18h",
       closeMenu: "Fermer le menu",
-      openMenu: "Ouvrir le menu"
+      openMenu: "Ouvrir le menu",
+      login: "Se connecter",
+      profile: "Mon compte"
     },
     footer: {
       description: "Le guide pratique pour comprendre et adopter la facture électronique, sans jargon.",
@@ -400,7 +402,9 @@ export const translations: Record<Locale, Record<string, any>> = {
       phoneMobile: "+33 1 84 60 40 20 (9am-6pm)",
       phoneTitle: "Toll-free call, Mon-Fri 9am-6pm",
       closeMenu: "Close menu",
-      openMenu: "Open menu"
+      openMenu: "Open menu",
+      login: "Log in",
+      profile: "My account"
     },
     footer: {
       description: "The practical guide to understanding and adopting electronic invoicing, without the jargon.",
@@ -786,7 +790,9 @@ export const translations: Record<Locale, Record<string, any>> = {
       phoneMobile: "+33 1 84 60 40 20 (9:00-18:00)",
       phoneTitle: "Bezpłatne połączenie, Pon-Pt 9:00-18:00",
       closeMenu: "Zamknij menu",
-      openMenu: "Otwórz menu"
+      openMenu: "Otwórz menu",
+      login: "Zaloguj się",
+      profile: "Moje konto"
     },
     footer: {
       description: "Praktyczny przewodnik, jak zrozumieć i wdrożyć e-fakturowanie, bez żargonu.",
@@ -1172,7 +1178,9 @@ export const translations: Record<Locale, Record<string, any>> = {
       phoneMobile: "+33 1 84 60 40 20 (9h-18h)",
       phoneTitle: "Chamada gratuita, Seg-Sex 9h-18h",
       closeMenu: "Fechar menu",
-      openMenu: "Abrir menu"
+      openMenu: "Abrir menu",
+      login: "Entrar",
+      profile: "Minha conta"
     },
     footer: {
       description: "O guia prático para entender e adotar a faturação eletrónica, sem jargão.",
@@ -1558,7 +1566,9 @@ export const translations: Record<Locale, Record<string, any>> = {
       phoneMobile: "20 40 60 84 01 (9 صباحًا - 6 مساءً)",
       phoneTitle: "اتصال مجاني، الاثنين - الجمعة 9 صباحًا - 6 مساءً",
       closeMenu: "إغلاق القائمة",
-      openMenu: "فتح القائمة"
+      openMenu: "فتح القائمة",
+      login: "تسجيل الدخول",
+      profile: "حسابي"
     },
     footer: {
       description: "الدليل العملي لفهم واعتماد الفواتير الإلكترونية دون مصطلحات معقدة.",

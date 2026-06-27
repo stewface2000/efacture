@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/components/LanguageContext";
@@ -12,12 +12,33 @@ export default function Navbar() {
   const pathname = usePathname();
   const { locale, t, setLocale } = useLanguage();
 
+  const [user, setUser] = useState<{ email: string; companyName?: string | null } | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/user/profile")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error("Unauthorized");
+      })
+      .then((data) => {
+        setUser(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setUser(null);
+        setLoading(false);
+      });
+  }, []);
+
   const navItems = [
     { href: "/", label: t("navbar.home") },
-    { href: "/metiers", label: t("navbar.guides") },
     { href: "/validateur", label: t("navbar.validator") },
     { href: "/generateur", label: t("navbar.generator") },
     { href: "/tarifs", label: t("navbar.pricing") },
+    { href: "/metiers", label: t("navbar.guides") },
     { href: "/quiz", label: t("navbar.quiz") },
   ];
 
@@ -97,11 +118,34 @@ export default function Navbar() {
             </li>
           ))}
           {mobileOpen && (
-            <li>
-              <a href={`tel:${t("navbar.phone").replace(/\s/g, "")}`} className="navbar-phone-mobile">
-                📞 {t("navbar.phoneMobile")}
-              </a>
-            </li>
+            <>
+              <li>
+                <a href={`tel:${t("navbar.phone").replace(/\s/g, "")}`} className="navbar-phone-mobile">
+                  📞 {t("navbar.phoneMobile")}
+                </a>
+              </li>
+              {!loading && (
+                <li>
+                  {user ? (
+                    <Link
+                      href="/generateur"
+                      className={pathname === "/generateur" ? "active" : ""}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      👤 {t("navbar.profile")}
+                    </Link>
+                  ) : (
+                    <Link
+                      href="/login"
+                      className={pathname === "/login" ? "active" : ""}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      🔑 {t("navbar.login")}
+                    </Link>
+                  )}
+                </li>
+              )}
+            </>
           )}
         </ul>
 
@@ -175,6 +219,65 @@ export default function Navbar() {
           <Link href="/quiz" className="btn btn-primary btn-sm" style={{ display: "none" }} id="nav-cta-desktop">
             {t("navbar.quiz")} →
           </Link>
+
+          {/* Auth State Component */}
+          {!loading && (
+            user ? (
+              <Link
+                href="/generateur"
+                className="navbar-profile"
+                title={t("navbar.profile")}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "34px",
+                  height: "34px",
+                  borderRadius: "50%",
+                  backgroundColor: "var(--teal-bg)",
+                  color: "var(--teal)",
+                  border: "2px solid var(--teal)",
+                  transition: "all 0.2s ease",
+                  cursor: "pointer",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "scale(1.05)";
+                  e.currentTarget.style.boxShadow = "var(--shadow-glow-teal)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                className="btn btn-secondary btn-sm"
+                style={{
+                  padding: "0.375rem 0.75rem",
+                  fontSize: "0.8125rem",
+                  fontWeight: 600,
+                  borderRadius: "var(--radius-full)",
+                }}
+              >
+                {t("navbar.login")}
+              </Link>
+            )
+          )}
 
           <button
             className="navbar-mobile-toggle"
