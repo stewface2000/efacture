@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!profession) {
     return {
-      title: "Guide non trouvé — efacture-independant.fr",
+      title: "Guide non trouvé — e-independant.fr",
     };
   }
 
@@ -69,15 +69,15 @@ export default async function ProfessionGuidePage({ params }: Props) {
     "dateModified": profession.updatedAt.toISOString(),
     "publisher": {
       "@type": "Organization",
-      "name": "efacture-independant.fr",
+      "name": "e-independant.fr",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://efacture-independant.fr/favicon.ico"
+        "url": "https://e-independant.fr/favicon.ico"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://efacture-independant.fr/metiers/${slug}`
+      "@id": `https://e-independant.fr/metiers/${slug}`
     }
   };
 

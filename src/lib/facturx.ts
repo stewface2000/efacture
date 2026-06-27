@@ -495,7 +495,7 @@ export async function generateInvoicePDF(
   }
 
   // === FOOTER ===
-  page.drawText("Facture générée au format Factur-X — efacture-independant.fr", {
+  page.drawText("Facture générée au format Factur-X — e-independant.fr", {
     x: marginLeft,
     y: 30,
     size: 7,
@@ -518,8 +518,8 @@ export async function generateInvoicePDF(
   pdfDoc.setTitle(`Facture ${invoice.invoiceNumber}`);
   pdfDoc.setAuthor(user.companyName || user.email);
   pdfDoc.setSubject("Facture électronique Factur-X");
-  pdfDoc.setProducer("efacture-independant.fr");
-  pdfDoc.setCreator("efacture-independant.fr");
+  pdfDoc.setProducer("e-independant.fr");
+  pdfDoc.setCreator("e-independant.fr");
 
   return pdfDoc.save();
 }
@@ -813,7 +813,7 @@ export async function generateQuotePDF(
   }
 
   // === FOOTER ===
-  page.drawText("Devis généré par efacture-independant.fr", {
+  page.drawText("Devis généré par e-independant.fr", {
     x: marginLeft,
     y: 30,
     size: 7,
@@ -825,8 +825,8 @@ export async function generateQuotePDF(
   pdfDoc.setTitle(`Devis ${quote.quoteNumber}`);
   pdfDoc.setAuthor(user.companyName || user.email);
   pdfDoc.setSubject("Devis professionnel");
-  pdfDoc.setProducer("efacture-independant.fr");
-  pdfDoc.setCreator("efacture-independant.fr");
+  pdfDoc.setProducer("e-independant.fr");
+  pdfDoc.setCreator("e-independant.fr");
 
   return pdfDoc.save();
 }

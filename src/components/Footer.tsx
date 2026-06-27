@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div>
-            <h4>efacture-independant.fr</h4>
+            <h4>e-independant.fr</h4>
             <p style={{ fontSize: "0.875rem", lineHeight: 1.7, color: "rgba(255,255,255,0.5)", maxWidth: "30ch", marginBottom: "1rem" }}>
               {t("footer.description")}
             </p>
@@ -80,7 +80,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <span>© {currentYear} efacture-independant.fr — {t("footer.copyright")}</span>
+          <span>© {currentYear} e-independant.fr — {t("footer.copyright")}</span>
           <span>{t("footer.madeWithCare")}</span>
         </div>
       </div>

@@ -39,7 +39,7 @@ export default async function QuizResultPage({ params }: Props) {
     <article style={{ position: "relative" }}>
       {/* Printable branding header */}
       <div className="print-header">
-        <div className="print-title">efacture-independant.fr</div>
+        <div className="print-title">e-independant.fr</div>
         <div className="print-subtitle">Votre diagnostic de facturation électronique personnalisé</div>
       </div>
 

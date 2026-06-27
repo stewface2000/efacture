@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: {
     default:
       "Facture Électronique Obligatoire 2026 — Guide Pratique pour Indépendants",
-    template: "%s | efacture-independant.fr",
+    template: "%s | e-independant.fr",
   },
   description:
     "Pas de panique, pas de jargon. Trouvez la solution de facturation électronique adaptée à votre métier avant le 1er septembre 2026.",
@@ -30,11 +30,11 @@ export const metadata: Metadata = {
     "obligation 2026",
     "facturation électronique obligatoire",
   ],
-  authors: [{ name: "efacture-independant.fr" }],
+  authors: [{ name: "e-independant.fr" }],
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    siteName: "efacture-independant.fr",
+    siteName: "e-independant.fr",
     title:
       "Facture Électronique Obligatoire 2026 — Guide Pratique pour Indépendants",
     description:

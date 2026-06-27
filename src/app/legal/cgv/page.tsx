@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Conditions Générales de Vente",
   description:
-    "Conditions générales de vente et d'utilisation du site efacture-independant.fr — quiz, générateur, newsletter et affiliation.",
+    "Conditions générales de vente et d'utilisation du site e-independant.fr — quiz, générateur, newsletter et affiliation.",
 };
 
 export default function CGVPage() {
@@ -14,7 +14,7 @@ export default function CGVPage() {
         <p>
           Les présentes Conditions Générales de Vente (CGV) ont pour objet de définir les 
           droits et obligations des parties dans le cadre de l'utilisation du site 
-          efacture-independant.fr et de la vente de prestations de service proposées par 
+          e-independant.fr et de la vente de prestations de service proposées par 
           l'éditeur.
         </p>
         <p>
@@ -25,7 +25,7 @@ export default function CGVPage() {
 
       <section className="legal-section">
         <h2>2. Services proposés</h2>
-        <p>Le site efacture-independant.fr propose les services suivants :</p>
+        <p>Le site e-independant.fr propose les services suivants :</p>
 
         <div className="legal-services-grid">
           <div className="legal-service-card">
@@ -124,7 +124,7 @@ export default function CGVPage() {
       <section className="legal-section">
         <h2>6. Liens d'affiliation — Transparence</h2>
         <p>
-          Le site efacture-independant.fr participe à des programmes d'affiliation avec 
+          Le site e-independant.fr participe à des programmes d'affiliation avec 
           des éditeurs de solutions de facturation électronique (notamment Indy, Pennylane, 
           Freebe). Cela signifie que :
         </p>
@@ -185,8 +185,8 @@ export default function CGVPage() {
             Politique de Confidentialité
           </a>
           . Pour toute question relative à vos données, contactez{" "}
-          <a href="mailto:rgpd@efacture-independant.fr" className="legal-link">
-            rgpd@efacture-independant.fr
+          <a href="mailto:rgpd@e-independant.fr" className="legal-link">
+            rgpd@e-independant.fr
           </a>.
         </p>
       </section>

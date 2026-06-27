@@ -4,7 +4,7 @@ import LegalNav from "@/components/LegalNav";
 export const metadata: Metadata = {
   title: "Informations Légales",
   description:
-    "Mentions légales, politique de confidentialité RGPD, conditions générales de vente et politique de cookies du site efacture-independant.fr.",
+    "Mentions légales, politique de confidentialité RGPD, conditions générales de vente et politique de cookies du site e-independant.fr.",
 };
 
 export default function LegalLayout({
@@ -21,7 +21,7 @@ export default function LegalLayout({
           <p className="legal-header-description">
             Nous prenons la protection de vos données et la transparence très au
             sérieux. Retrouvez ici toutes les informations légales relatives à
-            l'utilisation du site efacture-independant.fr.
+            l'utilisation du site e-independant.fr.
           </p>
         </div>
         <LegalNav />

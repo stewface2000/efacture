@@ -32,7 +32,7 @@ export default function Navbar() {
   return (
     <nav className="navbar" role="navigation" aria-label="Navigation principale">
       <div className="container navbar-inner">
-        <Link href="/" className="navbar-logo" aria-label="efacture-independant.fr — Accueil">
+        <Link href="/" className="navbar-logo" aria-label="e-independant.fr — Accueil">
           <svg
             width="32"
             height="32"

@@ -382,7 +382,7 @@ export const translations: Record<Locale, Record<string, any>> = {
         totalTTC: "Total TTC",
         submitBtn: "📋 Générer mon devis",
         submitBtnLoading: "⏳ Génération en cours...",
-        footerDisclaimer: "📋 Devis professionnel — efacture-independant.fr",
+        footerDisclaimer: "📋 Devis professionnel — e-independant.fr",
         errClientName: "Le nom du client est requis.",
         errNoItems: "Ajoutez au moins une ligne avec une description."
       }
@@ -768,7 +768,7 @@ export const translations: Record<Locale, Record<string, any>> = {
         totalTTC: "Total incl. tax",
         submitBtn: "📋 Generate my quote",
         submitBtnLoading: "⏳ Generating...",
-        footerDisclaimer: "📋 Professional quote — efacture-independant.fr",
+        footerDisclaimer: "📋 Professional quote — e-independant.fr",
         errClientName: "Client name is required.",
         errNoItems: "Add at least one line with a description."
       }
@@ -1154,7 +1154,7 @@ export const translations: Record<Locale, Record<string, any>> = {
         totalTTC: "Razem brutto",
         submitBtn: "📋 Generuj wycenę",
         submitBtnLoading: "⏳ Generowanie...",
-        footerDisclaimer: "📋 Profesjonalna wycena — efacture-independant.fr",
+        footerDisclaimer: "📋 Profesjonalna wycena — e-independant.fr",
         errClientName: "Nazwa klienta jest wymagana.",
         errNoItems: "Dodaj co najmniej jedną pozycję z opisem."
       }
@@ -1540,7 +1540,7 @@ export const translations: Record<Locale, Record<string, any>> = {
         totalTTC: "Total c/ imposto",
         submitBtn: "📋 Gerar meu orçamento",
         submitBtnLoading: "⏳ Gerando...",
-        footerDisclaimer: "📋 Orçamento profissional — efacture-independant.fr",
+        footerDisclaimer: "📋 Orçamento profissional — e-independant.fr",
         errClientName: "O nome do cliente é obrigatório.",
         errNoItems: "Adicione pelo menos uma linha com descrição."
       }
@@ -1926,7 +1926,7 @@ export const translations: Record<Locale, Record<string, any>> = {
         totalTTC: "المجموع شامل الضريبة",
         submitBtn: "📋 إنشاء عرض السعر",
         submitBtnLoading: "⏳ جارٍ الإنشاء...",
-        footerDisclaimer: "📋 عرض سعر مهني — efacture-independant.fr",
+        footerDisclaimer: "📋 عرض سعر مهني — e-independant.fr",
         errClientName: "اسم العميل مطلوب.",
         errNoItems: "أضف بندًا واحدًا على الأقل مع وصف."
       }

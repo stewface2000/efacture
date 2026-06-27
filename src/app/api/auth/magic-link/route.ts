@@ -60,11 +60,11 @@ export async function POST(request: NextRequest) {
         },
         body: JSON.stringify({
           sender: {
-            name: "efacture-independant.fr",
-            email: "noreply@efacture-independant.fr",
+            name: "e-independant.fr",
+            email: "noreply@e-independant.fr",
           },
           to: [{ email: normalizedEmail }],
-          subject: "Votre lien de connexion — efacture-independant.fr",
+          subject: "Votre lien de connexion — e-independant.fr",
           htmlContent: `
             <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto; padding: 2rem;">
               <h2 style="color: #1a1a1a; margin-bottom: 1rem;">Connexion à efacture</h2>

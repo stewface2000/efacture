@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Politique de Cookies",
   description:
-    "Politique de cookies du site efacture-independant.fr — informations sur l'utilisation des cookies et le paramétrage de vos préférences.",
+    "Politique de cookies du site e-independant.fr — informations sur l'utilisation des cookies et le paramétrage de vos préférences.",
 };
 
 export default function CookiesPage() {
@@ -30,7 +30,7 @@ export default function CookiesPage() {
       <section className="legal-section">
         <h2>2. Types de cookies utilisés</h2>
         <p>
-          Le site efacture-independant.fr utilise différentes catégories de cookies, 
+          Le site e-independant.fr utilise différentes catégories de cookies, 
           chacune ayant une finalité spécifique :
         </p>
 
@@ -279,8 +279,8 @@ export default function CookiesPage() {
         <p>
           Pour toute question concernant notre utilisation des cookies, vous pouvez nous 
           contacter à{" "}
-          <a href="mailto:rgpd@efacture-independant.fr" className="legal-link">
-            rgpd@efacture-independant.fr
+          <a href="mailto:rgpd@e-independant.fr" className="legal-link">
+            rgpd@e-independant.fr
           </a>.
         </p>
         <p className="legal-update-date">

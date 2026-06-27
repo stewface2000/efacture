@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Politique de Confidentialité — RGPD",
   description:
-    "Politique de confidentialité et de protection des données personnelles conforme au RGPD du site efacture-independant.fr.",
+    "Politique de confidentialité et de protection des données personnelles conforme au RGPD du site e-independant.fr.",
 };
 
 export default function ConfidentialitePage() {
@@ -12,7 +12,7 @@ export default function ConfidentialitePage() {
       <section className="legal-section">
         <h2>1. Introduction</h2>
         <p>
-          La protection de vos données personnelles est une priorité pour efacture-independant.fr. 
+          La protection de vos données personnelles est une priorité pour e-independant.fr. 
           La présente politique de confidentialité a pour objet de vous informer sur la manière dont 
           nous collectons, traitons et protégeons vos données personnelles, conformément au 
           Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679) et à la 
@@ -30,8 +30,8 @@ export default function ConfidentialitePage() {
           <div className="legal-info-row">
             <span className="legal-info-label">Email de contact</span>
             <span className="legal-info-value">
-              <a href="mailto:rgpd@efacture-independant.fr" className="legal-link">
-                rgpd@efacture-independant.fr
+              <a href="mailto:rgpd@e-independant.fr" className="legal-link">
+                rgpd@e-independant.fr
               </a>
             </span>
           </div>
@@ -186,8 +186,8 @@ export default function ConfidentialitePage() {
           <div className="legal-callout-icon">📩</div>
           <p>
             Pour exercer vos droits, envoyez un email à{" "}
-            <a href="mailto:rgpd@efacture-independant.fr" className="legal-link">
-              rgpd@efacture-independant.fr
+            <a href="mailto:rgpd@e-independant.fr" className="legal-link">
+              rgpd@e-independant.fr
             </a>{" "}
             en précisant votre demande et en joignant un justificatif d'identité. 
             Nous nous engageons à répondre dans un délai de 30 jours.

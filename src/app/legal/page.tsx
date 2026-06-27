@@ -6,7 +6,7 @@ export default function MentionsLegalesPage() {
         <div className="legal-info-card">
           <div className="legal-info-row">
             <span className="legal-info-label">Raison sociale</span>
-            <span className="legal-info-value">efacture-independant.fr</span>
+            <span className="legal-info-value">e-independant.fr</span>
           </div>
           <div className="legal-info-row">
             <span className="legal-info-label">Forme juridique</span>
@@ -26,7 +26,7 @@ export default function MentionsLegalesPage() {
           </div>
           <div className="legal-info-row">
             <span className="legal-info-label">Email</span>
-            <span className="legal-info-value">contact@efacture-independant.fr</span>
+            <span className="legal-info-value">contact@e-independant.fr</span>
           </div>
           <div className="legal-info-row">
             <span className="legal-info-label">Numéro de TVA</span>
@@ -60,7 +60,7 @@ export default function MentionsLegalesPage() {
       <section className="legal-section">
         <h2>3. Propriété intellectuelle</h2>
         <p>
-          L'ensemble du contenu du site efacture-independant.fr (textes, images, graphismes, logo, 
+          L'ensemble du contenu du site e-independant.fr (textes, images, graphismes, logo, 
           icônes, mise en page, logiciels, et tout autre élément susceptible de protection par le droit 
           de la propriété intellectuelle) est la propriété exclusive de l'éditeur ou de ses partenaires, 
           sauf mention contraire.
@@ -84,7 +84,7 @@ export default function MentionsLegalesPage() {
       <section className="legal-section">
         <h2>4. Liens d'affiliation</h2>
         <p>
-          Le site efacture-independant.fr contient des liens affiliés vers des solutions de facturation 
+          Le site e-independant.fr contient des liens affiliés vers des solutions de facturation 
           électronique. Lorsqu'un utilisateur souscrit à un service via l'un de ces liens, le site 
           peut percevoir une commission de la part du partenaire concerné, sans coût supplémentaire 
           pour l'utilisateur.
@@ -99,7 +99,7 @@ export default function MentionsLegalesPage() {
       <section className="legal-section">
         <h2>5. Limitation de responsabilité</h2>
         <p>
-          Les informations fournies sur le site efacture-independant.fr sont présentées à titre 
+          Les informations fournies sur le site e-independant.fr sont présentées à titre 
           informatif et pédagogique. Elles ne constituent en aucun cas un conseil juridique, 
           fiscal ou comptable personnalisé.
         </p>
@@ -118,7 +118,7 @@ export default function MentionsLegalesPage() {
       <section className="legal-section">
         <h2>6. Crédits</h2>
         <p>
-          Conception et développement : efacture-independant.fr<br />
+          Conception et développement : e-independant.fr<br />
           Typographie : Inter (Google Fonts, licence OFL)<br />
           Icônes : Lucide Icons (licence ISC)
         </p>

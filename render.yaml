@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: efacture-independant
+    name: e-independant
     env: docker
     dockerfilePath: ./Dockerfile
     plan: free
