@@ -5,12 +5,21 @@ import { generateToken, setSessionCookie } from "@/lib/auth";
 export async function GET(request: NextRequest) {
   const redirectParam = request.nextUrl.searchParams.get("redirect");
 
+  // Resolve proxy/external host headers
+  const forwardedHost = request.headers.get("x-forwarded-host");
+  const forwardedProto = request.headers.get("x-forwarded-proto") || "https";
+  
+  let origin = request.nextUrl.origin;
+  if (forwardedHost) {
+    origin = `${forwardedProto}://${forwardedHost}`;
+  }
+
   const errorRedirect = () => {
     let url = "/login?error=invalid";
     if (redirectParam && redirectParam.startsWith("/") && !redirectParam.startsWith("//")) {
       url += `&redirect=${encodeURIComponent(redirectParam)}`;
     }
-    return NextResponse.redirect(new URL(url, request.url));
+    return NextResponse.redirect(new URL(url, origin));
   };
 
   try {
@@ -54,9 +63,10 @@ export async function GET(request: NextRequest) {
     if (redirectParam && redirectParam.startsWith("/") && !redirectParam.startsWith("//")) {
       destination = redirectParam;
     }
-    return NextResponse.redirect(new URL(destination, request.url));
+    return NextResponse.redirect(new URL(destination, origin));
   } catch (error) {
     console.error("[Verify] Erreur de vérification du magic link:", error);
     return errorRedirect();
   }
 }
+
