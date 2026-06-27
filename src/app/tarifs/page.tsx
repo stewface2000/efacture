@@ -162,6 +162,10 @@ export default async function TarifsPage() {
                     <span style={{ color: "var(--teal)", fontWeight: "bold" }}>✓</span>
                     <span>{t("tarifs.card2F4")}</span>
                   </li>
+                  <li style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
+                    <span style={{ color: "var(--teal)", fontWeight: "bold" }}>✓</span>
+                    <span>{t("tarifs.card2F5")}</span>
+                  </li>
                 </ul>
               </div>
 
@@ -240,6 +244,10 @@ export default async function TarifsPage() {
                   <li style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
                     <span style={{ color: "var(--rust)", fontWeight: "bold" }}>✓</span>
                     <span>{t("tarifs.card3F5")}</span>
+                  </li>
+                  <li style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
+                    <span style={{ color: "var(--rust)", fontWeight: "bold" }}>✓</span>
+                    <span>{t("tarifs.card3F6")}</span>
                   </li>
                 </ul>
               </div>

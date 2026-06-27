@@ -140,6 +140,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       card2F2: "Format légal obligatoire conforme réforme 2026",
       card2F3: "Téléchargement PDF avec métadonnées XML structurées",
       card2F4: "Gestion simple de vos bases clients et prestations",
+      card2F5: "Création de devis professionnels en illimité",
       card2Cta: "Essayer gratuitement →",
       
       card3Badge: "Professionnel",
@@ -154,6 +155,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       card3F3: "Extraction IA de documents (remplissage automatique en 1 clic)",
       card3F4: "Import et export de vos bases clients et prestations",
       card3F5: "Support client prioritaire par email 7j/7",
+      card3F6: "Création de devis professionnels en illimité",
       card3Cta: "Choisir la version illimitée →",
       
       faqTitle: "Questions Fréquentes",
@@ -524,6 +526,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       card2F2: "Mandatory legal format compliant with the 2026 reform",
       card2F3: "PDF download with structured XML metadata",
       card2F4: "Simple management of client and service bases",
+      card2F5: "Unlimited professional quotes creation",
       card2Cta: "Try for free →",
       
       card3Badge: "Professional",
@@ -538,6 +541,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       card3F3: "AI document extraction (auto-fill in 1 click)",
       card3F4: "Import and export of client and service bases",
       card3F5: "Priority client support by email 7d/7",
+      card3F6: "Unlimited professional quotes creation",
       card3Cta: "Choose unlimited version →",
       
       faqTitle: "Frequently Asked Questions",
@@ -908,6 +912,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       card2F2: "Obowiązkowy format prawny zgodny z reformą 2026",
       card2F3: "Pobieranie PDF ze strukturyzowanymi metadanymi XML",
       card2F4: "Proste zarządzanie bazą klientów i usług",
+      card2F5: "Nielimitowane tworzenie profesjonalnych wycen",
       card2Cta: "Wypróbuj za darmo →",
       
       card3Badge: "Profesjonalny",
@@ -922,6 +927,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       card3F3: "Ekstrakcja dokumentów przez AI (automatyczne wypełnianie jednym kliknięciem)",
       card3F4: "Import i eksport bazy klientów i usług",
       card3F5: "Priorytetowe wsparcie klienta przez e-mail 7 dni w tygodniu",
+      card3F6: "Nielimitowane tworzenie profesjonalnych wycen",
       card3Cta: "Wybierz wersję nielimitowaną →",
       
       faqTitle: "Często Zadawane Pytania",
@@ -1292,6 +1298,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       card2F2: "Formato legal obrigatório em conformidade com a reforma de 2026",
       card2F3: "Download em PDF com metadados XML estruturados",
       card2F4: "Gestão simples da base de clientes e serviços",
+      card2F5: "Criação ilimitada de orçamentos profissionais",
       card2Cta: "Experimentar gratuitamente →",
       
       card3Badge: "Profissional",
@@ -1306,6 +1313,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       card3F3: "Extração de documentos por IA (preenchimento automático com 1 clique)",
       card3F4: "Importação e exportação das bases de clientes e serviços",
       card3F5: "Suporte prioritário ao cliente por e-mail 7 dias por semana",
+      card3F6: "Criação ilimitada de orçamentos profissionais",
       card3Cta: "Escolher a versão ilimitada →",
       
       faqTitle: "Perguntas Frequentes",
@@ -1676,6 +1684,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       card2F2: "صيغة قانونية إلزامية متوافقة مع إصلاح عام 2026",
       card2F3: "تنزيل PDF يحتوي على ملف XML المهيكل والمدمج",
       card2F4: "إدارة بسيطة لقاعدة العملاء والخدمات",
+      card2F5: "إنشاء عروض أسعار مهنية غير محدودة",
       card2Cta: "جرب مجاناً ←",
       
       card3Badge: "احترافي",
@@ -1690,6 +1699,7 @@ export const translations: Record<Locale, Record<string, any>> = {
       card3F3: "استخراج المستندات بالذكاء الاصطناعي (ملء تلقائي بنقرة واحدة)",
       card3F4: "استيراد وتصدير قاعدة عملائك والخدمات",
       card3F5: "دعم عملاء ذو أولوية عبر البريد الإلكتروني على مدار الساعة طوال الأسبوع",
+      card3F6: "إنشاء عروض أسعار مهنية غير محدودة",
       card3Cta: "اختر النسخة غير المحدودة ←",
       
       faqTitle: "الأسئلة الشائعة",
